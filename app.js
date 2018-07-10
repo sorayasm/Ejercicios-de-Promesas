@@ -61,7 +61,41 @@ animateElement(allImg[0], -200, 500, 3000)
     });
 console.log("Holas, soy codigo despues de la promesa")*/
 
-Promise.all([
+const doggie = new Promise((resolve, reject) => {
+    animateElementX(allImg[0], -200, 600, 3000) // se mueve hacia la derecha
+        .then(() => {
+            return animateElementY(allImg[0], 0, 400, 3000) // se mueve hacia abajo
+        })
+        .then(() => {
+            return animateElementX(allImg[0], 600, 0, 3000) // se mueve hacia la izq
+        })
+        .then(() => {
+            return animateElementY(allImg[0], 400, 0, 3000) // se mueve hacia arriba
+        })
+        .catch(() => {
+            console.log("Falló la animación");
+        })
+});
+
+const cate = new Promise((resolve, reject) => {
+    animateElementX(allImg[1], -200, 400, 3100) // se mueve hacia la derecha
+        .then(() => {
+            return animateElementY(allImg[1], 140, 260, 3100) // se mueve hacia abajo
+        })
+        .then(() => {
+            return animateElementX(allImg[1], 400, 0, 3100) // se mueve hacia la izq
+        })
+        .then(() => {
+            return animateElementY(allImg[1], 260, 140, 3100) // se mueve hacia arriba
+        })
+        .catch(() => {
+            console.log("Falló la animación");
+        })
+});
+
+
+
+/*Promise.all([
         animateElementX(allImg[0], -200, 600, 3000), // se mueve hacia la derecha
         animateElementX(allImg[1], -200, 400, 6000) // se mueve hacia la derecha
     ]).then(() => {
@@ -83,4 +117,6 @@ Promise.all([
     })
     .catch(() => {
 
-    });
+    });*/
+
+Promise.all([doggie, cate]);
